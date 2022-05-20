@@ -1,0 +1,45 @@
+@import "../../styles/variables";
+
+.card {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 10px;
+  background: #fff;
+  padding: 20px;
+  height: 254px;
+
+  & .content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    & .photo {
+      border-radius: 50%;
+      margin-bottom: 20px;
+    }
+
+    & .tooltip {
+      position: relative;
+
+      & .name {
+        margin-bottom: 20px;
+      }
+
+      & .name, .position, .email, .phone {
+        max-width: 330px;
+        line-height: 26px;
+        color: $text-color;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        cursor: pointer;
+
+        @media (max-width: 1280px) {
+          max-width: 288px;
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,185 @@
+@import "../../styles/variables";
+
+.form {
+  & .container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    max-width: 1170px;
+    margin: 0 auto;
+
+    @media (max-width: 576px) {
+      padding: 0 16px;
+    }
+
+    & .title {
+      font-size: 40px;
+      line-height: 40px;
+      margin-bottom: 50px;
+      color: $text-color;
+
+      @media (max-width: 576px) {
+        max-width: 328px;
+        text-align: center;
+      }
+    }
+
+    & .successImg {
+      margin-bottom: 100px;
+    } 
+
+    & .formContainer {
+      display: flex;
+      flex-direction: column;
+
+      & .inputContainer {
+        margin-bottom: 50px;
+
+        &:nth-child(3) {
+          margin-bottom: 25px;
+        }
+
+        & .name, .email, .phone {
+          width: 380px;
+          height: 54px;
+          border: 1px solid $input-border-color;
+          background: transparent;
+          border-radius: 4px;
+          padding-left: 16px;
+          color: $text-color;
+          font-size: 16px;
+          line-height: 26px;
+          outline: none;
+    
+          &::placeholder {
+            color: $input-text-color;
+            line-height: 26px;
+          }
+
+          @media (max-width: 576px) {
+            width: 328px;
+          }
+        }
+  
+        & .error, .phoneNumber {
+          margin-left: 17px;
+          margin-top: 4px;
+          color: $input-error-color;
+          font-size: 12px;
+          line-height: 14px;
+        }
+
+        & .phoneNumber {
+          color: $input-text-color;
+        }
+
+        & .errorName, .errorEmail, .errorPhone {
+          border: 2px solid $input-error-color;
+        }
+      }
+
+      & .selectTitle {
+        font-weight: 400;
+        font-size: 16px;
+        line-height: 26px;
+        margin-bottom: 11px;
+      }
+
+      & .selectContainer {
+        padding-left: 20px;
+        margin-bottom: 47px;
+        & .select {
+          position: relative;
+          margin-bottom: 7px;
+
+          & input {
+            display: none;
+          }
+
+          & input + label {
+            font-weight: 400;
+            font-size: 16px;
+            line-height: 26px;
+            color: $text-color;
+            padding-left: 12px;
+            cursor: pointer;
+          }
+
+          & input + label::before {
+            content: "";
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            left: -20px;
+            top: 0;
+            border: 1px solid $radio-button-inactive-color ;
+            background: transparent;
+            border-radius: 50%;
+          }
+
+          & input:checked + label::after {
+            content: "";
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            left: -14px;
+            top: 6px;
+            background: $radio-button-color;
+            border-radius: 50%;
+          }
+
+          & input:checked + label::before {
+            border: 1px solid $radio-button-color;
+          }
+        }
+      }
+
+      & .file {
+        display: flex;
+        align-items: center;
+        margin-bottom: 50px;
+
+        & input {
+          display: none;
+        }
+
+        & .buttonFile {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          width: 83px;
+          height: 54px;
+          border: 1px solid $text-color;
+          border-radius: 4px 0 0 4px;
+          color: $text-color;
+          line-height: 26px;
+          cursor: pointer;
+        }
+
+        & .nameFile {
+          display: flex;
+          align-items: center;
+          padding: 0 16px;
+          width: 297px;
+          height: 54px;
+          border-radius: 0 4px 4px 0;
+          border: 1px solid $radio-button-inactive-color;
+          border-left: none;
+          color: $input-text-color;
+
+          & span {
+            width: 100%;
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+          }
+
+          @media (max-width: 576px) {
+            width: 245px;
+          }
+        }
+      }
+    }
+  }
+}
+

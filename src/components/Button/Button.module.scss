@@ -1,0 +1,33 @@
+@import "../../styles/variables";
+
+.button {
+  background: $primary-button-color;
+  border-radius: 80px;
+  border: none;
+  cursor: pointer;
+  font-family: $primary-font;
+  font-size: 16px;
+  line-height: 26px;
+  transition: all 0.2s ease-in-out;
+
+  &:hover {
+    background: $primary-button-hover-color;
+  }
+
+  &:disabled {
+    color: #ffffff;
+    background: $primary-button-disabled-color;
+  }
+}
+
+.users {
+  padding: 4px 29px;
+}
+
+.signup {
+  padding: 4px 22px;
+}
+
+.show {
+  padding: 4px 18px;
+}

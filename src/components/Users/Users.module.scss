@@ -1,0 +1,43 @@
+@import "../../styles/variables";
+
+.users {
+  margin-bottom: 140px;
+
+  & .container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 0 auto;
+    max-width: 1170px;
+
+    @media (max-width: 1280px) {
+      padding: 0 60px
+    }
+
+    @media (max-width: 768px) {
+      padding: 0 32px
+    }
+
+    @media (max-width: 576px) {
+      padding: 0 16px
+    }
+
+    & .title{
+      min-width: 250px;
+      text-align: center;
+      font-size: 40px;
+      line-height: 40px;
+      color: $text-color;
+      margin-bottom: 50px;
+    }
+
+    & .cards {
+      width: 100%;
+      display: grid;
+      grid-template-columns: repeat(auto-fill,minmax(328px, 1fr));
+      gap: 29px;
+      justify-content: center;
+      margin-bottom: 50px;
+    }
+  }
+}

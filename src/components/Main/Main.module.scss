@@ -1,0 +1,45 @@
+@import "../../styles/variables";
+
+.main {
+  margin-bottom: 140px;
+  & .container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    max-width: 1170px;
+    margin: 0 auto;
+    height: 650px;
+
+    @media (max-width: 768px) {
+      height: 500px;
+    }
+    background-image: url("../../../public/images/background.png");
+    background-image: url("../../../public/images/bg.webp");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+  }
+
+  & .info {
+    text-align: center;
+    max-width: 380px;
+
+    @media (max-width: 576px) {
+      max-width: 328px;
+    }
+
+    & .title {
+      font-size: 40px;
+      line-height: 40px;
+      font-weight: 400;
+      color: #FFFFFF;
+      margin-bottom: 21px;
+    }
+
+    & .text {
+      color: #FFFFFF;
+      line-height: 26px;
+      margin-bottom: 32px;
+    }
+  }
+}
