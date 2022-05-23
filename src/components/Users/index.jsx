@@ -3,6 +3,7 @@ import styles from "./Users.module.scss";
 import { Card } from "../Card";
 import Button from "../Button";
 import { API_URL } from "../../utils";
+import { fetchUsers } from "../../utils/api";
 
 export const Users = () => {
   const [users, setUsers] = useState([]);
@@ -12,35 +13,31 @@ export const Users = () => {
   const [cardLoading, setCardLoading] = useState(false);
 
   const sortDataUser = useMemo(() => {
-    return users.sort(
+    return [...users].sort(
       (a, b) => b.registration_timestamp - a.registration_timestamp
     );
   }, [users]);
 
   const loadUsers = () => {
     setCardLoading(true);
-    fetch(dataLink)
-      .then((res) => res.json())
-      .then((data) => {
-        if (data.success) {
-          setUsers(data.users);
-          setDataLink(data.links.next_url);
-          setCountPage(countPage + 1);
-          setCardLoading(false);
-        }
-      });
+    fetchUsers(dataLink).then((data) => {
+      if (data.success) {
+        setUsers([...users, ...data.users]);
+        setDataLink(data.links.next_url);
+        setCountPage(countPage + 1);
+        setCardLoading(false);
+      }
+    });
   };
 
   useEffect(() => {
-    fetch(dataLink)
-      .then((res) => res.json())
-      .then((data) => {
-        if (data.success) {
-          setUsers(data.users);
-          setDataLink(data.links.next_url);
-          setAllPages(data.total_pages);
-        }
-      });
+    fetchUsers(dataLink).then((data) => {
+      if (data.success) {
+        setUsers(data.users);
+        setDataLink(data.links.next_url);
+        setAllPages(data.total_pages);
+      }
+    });
   }, []);
 
   return (

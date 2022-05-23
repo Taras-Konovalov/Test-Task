@@ -4,45 +4,38 @@ import Button from "../Button";
 import classNames from "classnames";
 import { useState, useEffect, useMemo } from "react";
 import { API_URL } from "../../utils";
-import { validationSchema } from "../../utils";
+import { validationSchema, initialeFormValues } from "../../utils";
+import { fetchToken, fetchPosition } from "../../utils/api";
+import { MessagePopup } from "../MessagePopup";
 
 export const Form = () => {
   const [positions, setPositions] = useState([]);
   const [token, setToken] = useState("");
   const [seletedPosition, setSelectedPositoin] = useState("");
   const [file, setFile] = useState(null);
-
   const [success, setSuccess] = useState(false);
+  const [errorMessage, setErrorMessage] = useState("");
+  const [isPopup, setIsPopup] = useState(false);
 
   const chosenPositionId = useMemo(() => {
     return positions.filter((pos) => pos.name === seletedPosition)[0]?.id;
   }, [seletedPosition]);
 
   useEffect(() => {
-    fetch(API_URL.POSITIONS)
-      .then((res) => res.json())
-      .then((data) => {
-        if (data.success) {
-          setPositions(data.positions);
-        }
-      });
+    fetchPosition().then((data) => {
+      if (data.success) {
+        setPositions(data.positions);
+      }
+    });
   }, []);
 
   useEffect(() => {
-    fetch(API_URL.TOKEN)
-      .then((res) => res.json())
-      .then((data) => {
-        if (data.success) {
-          setToken(data.token);
-        }
-      });
+    fetchToken().then((data) => {
+      if (data.success) {
+        setToken(data.token);
+      }
+    });
   }, []);
-
-  const initialeFormValues = {
-    name: "",
-    email: "",
-    phone: "",
-  };
 
   const createUser = (name, email, phone, position_id, photo) => {
     const formData = new FormData();
@@ -66,6 +59,9 @@ export const Form = () => {
       .then((data) => {
         if (data.success) {
           setSuccess(true);
+        } else {
+          setErrorMessage(data.message);
+          setIsPopup(true);
         }
       });
   };
@@ -194,7 +190,7 @@ export const Form = () => {
                       <span>{file ? file.name : "Upload your photo"}</span>
                     </div>
                   </div>
-                  <div style={{ marginBottom: "100px", textAlign: "center" }}>
+                  <div className={styles.buttonContainer}>
                     <Button
                       type='submit'
                       variant='signup'
@@ -211,6 +207,7 @@ export const Form = () => {
           </Formik>
         )}
       </div>
+      {isPopup && <MessagePopup message={errorMessage} onClick={setIsPopup} />}
     </section>
   );
 };

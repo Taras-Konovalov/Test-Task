@@ -2,6 +2,12 @@ import * as yup from "yup";
 
 const phoneRegExp = /^[\+]{0,1}380([0-9]{9})$/;
 
+export const initialeFormValues = {
+  name: "",
+  email: "",
+  phone: "",
+};
+
 export const validationSchema = yup.object().shape({
   name: yup
     .string()
